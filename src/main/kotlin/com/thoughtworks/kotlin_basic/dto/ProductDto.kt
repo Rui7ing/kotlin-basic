@@ -12,7 +12,7 @@ data class ProductDto(val product: Product) {
     val type: String = product.type
     val image: String = product.image
     var quantity: Long = 0
-    var zone: String = ""
+    var zone: MutableList<String> = emptyList<String>().toMutableList()
 
     fun updateQuantity(inventory: Inventory) {
         if (inventory.sku == this.sku) {
@@ -22,7 +22,7 @@ data class ProductDto(val product: Product) {
 
     fun updateZone(inventory: Inventory) {
         if (inventory.sku == this.sku) {
-            this.zone = "${this.zone}\\${inventory.zone}"
+            this.zone.add(inventory.zone)
         }
     }
 
@@ -35,7 +35,7 @@ data class ProductDto(val product: Product) {
         }
     }
 
-    fun convertToList(): List<String> {
+    fun convertToStringList(): List<String> {
         return listOf(
             this.id.toString(),
             this.name,
@@ -43,7 +43,7 @@ data class ProductDto(val product: Product) {
             this.quantity.toString(),
             this.originalPrice.toString(),
             this.showPrice.toString(),
-            this.zone,
+            this.zone.joinToString(", "),
             this.type,
             this.image)
     }

@@ -22,8 +22,8 @@ class ProductServiceTest {
         MockKAnnotations.init(this)
         every { mockService.getInventoriesList() } returns mockInventories
         every { mockService.getProductList() } returns mockProducts
-        products = mockService.getProductList() ?: emptyList()
-        inventories = mockService.getInventoriesList() ?: emptyList()
+        products = mockService.getProductList()
+        inventories = mockService.getInventoriesList()
     }
 
     private val mockProducts = listOf(
@@ -77,14 +77,14 @@ class ProductServiceTest {
     fun `should get product list`() {
         every { mockService.getProductList() } returns mockProducts
         val result = mockService.getProductList();
-        Assertions.assertEquals(5, result?.size);
+        Assertions.assertEquals(5, result.size);
     }
 
     @Test
     fun `should get inventory list`() {
         every { mockService.getInventoriesList() } returns mockInventories
         val result = mockService.getInventoriesList();
-        Assertions.assertEquals(8, result?.size);
+        Assertions.assertEquals(8, result.size);
     }
 
     @Test
