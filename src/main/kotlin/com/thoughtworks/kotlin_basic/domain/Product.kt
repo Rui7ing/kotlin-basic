@@ -10,9 +10,9 @@ data class Product(
     @SerializedName("SKU")
     val sku: String,
     @SerializedName("price")
-    val price: Double,
+    val price: Float,
     @SerializedName("type")
     val type: String,
     @SerializedName("image")
-    val image: String
+    val image: String,
 )
